@@ -1,0 +1,418 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const benefits = [
+  {
+    icon: 'global',
+    title: 'Access International Customers',
+    description: 'Reach travelers from around the world. 80% of our customers come from English-speaking countries.'
+  },
+  {
+    icon: 'easy',
+    title: 'Easy Listing Process',
+    description: 'Create your listing in minutes. Our team helps you every step of the way with photos and descriptions.'
+  },
+  {
+    icon: 'payment',
+    title: 'Secure Payments',
+    description: 'Get paid reliably through Stripe. No chasing payments - we transfer to your account automatically.'
+  },
+  {
+    icon: 'support',
+    title: 'Marketing Support',
+    description: 'We promote your experience on Google, social media, and partner channels at no extra cost.'
+  },
+  {
+    icon: 'analytics',
+    title: 'Real-time Analytics',
+    description: 'Track bookings, reviews, and revenue with our simple dashboard. Know your performance anytime.'
+  },
+  {
+    icon: 'support2',
+    title: '24/7 Partner Support',
+    description: 'English and Japanese support team available to help you with any questions or issues.'
+  }
+];
+
+const steps = [
+  { number: '1', title: 'Submit Application', description: 'Tell us about your experience and business' },
+  { number: '2', title: 'Create Listing', description: 'Our team helps you set up your page' },
+  { number: '3', title: 'Go Live', description: 'Start receiving bookings from day one' }
+];
+---
+
+<BaseLayout 
+  title="Partner With Us - MATCHS"
+  description="List your local experience on MATCHS. Reach international travelers and grow your business in Tokyo Tama region."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="page-tag">For Business</span>
+      <h1 class="page-title">Partner With MATCHS</h1>
+      <p class="page-subtitle">
+        Showcase your authentic local experience to thousands of international travelers. No listing fees, ever.
+      </p>
+    </div>
+  </section>
+  
+  <section class="benefits-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why Partner With Us</span>
+        <h2 class="section-title">Grow Your Business</h2>
+        <p class="section-subtitle">
+          Join 50+ local businesses already on MATCHS. We handle the marketing, you focus on your guests.
+        </p>
+      </div>
+      
+      <div class="benefits-grid">
+        {benefits.map(benefit => (
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              {benefit.icon === 'global' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+              )}
+              {benefit.icon === 'easy' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 11l3 3L22 4"/>
+                  <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+              )}
+              {benefit.icon === 'payment' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                  <line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+              )}
+              {benefit.icon === 'support' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                </svg>
+              )}
+              {benefit.icon === 'analytics' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              )}
+              {benefit.icon === 'support2' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="benefit-title">{benefit.title}</h3>
+            <p class="benefit-description">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <section class="process-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Start in 3 Steps</h2>
+      </div>
+      
+      <div class="steps-container">
+        {steps.map((step, index) => (
+          <div class="step-wrapper">
+            <div class="step-card">
+              <div class="step-number">{step.number}</div>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-description">{step.description}</p>
+            </div>
+            {index < steps.length - 1 && (
+              <div class="step-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Get Started?</h2>
+        <p class="cta-subtitle">Apply now and start reaching international travelers today.</p>
+        <a href="/contact" class="btn btn-primary btn-lg">Apply Now</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="faq-section section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-question">How much does it cost to list?</h3>
+          <p class="faq-answer">It's completely free to list on MATCHS. We only charge a small commission when you get a booking.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What kind of experiences can I list?</h3>
+          <p class="faq-answer">We accept all types of authentic local experiences - food tours, cultural activities, outdoor adventures, and more.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I get paid?</h3>
+          <p class="faq-answer">We use Stripe for secure payments. You receive payouts directly to your bank account after each booking.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I use Japanese in my listing?</h3>
+          <p class="faq-answer">We recommend English for now since our customers are primarily international travelers. We'll support Japanese in the future.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .page-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-3xl);
+  }
+  
+  .section-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+  
+  .section-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-gray-700);
+    margin-top: var(--spacing-md);
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  .benefit-card {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .benefit-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .benefit-description {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+    line-height: 1.6;
+  }
+  
+  .process-section {
+    background: var(--color-gray-50);
+  }
+  
+  .steps-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+  }
+  
+  .step-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  .step-card {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    min-width: 250px;
+  }
+  
+  .step-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.3;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .step-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .step-description {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+  }
+  
+  .step-arrow {
+    color: var(--color-gray-300);
+  }
+  
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    text-align: center;
+  }
+  
+  .cta-content {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .cta-subtitle {
+    font-size: 1.0625rem;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .btn-lg {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: 1.0625rem;
+  }
+  
+  .faq-section {
+    background: var(--color-white);
+  }
+  
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: var(--spacing-lg);
+  }
+  
+  .faq-item {
+    padding: var(--spacing-lg);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+  }
+  
+  .faq-question {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .faq-answer {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .steps-container {
+      flex-direction: column;
+    }
+    
+    .step-arrow {
+      transform: rotate(90deg);
+    }
+  }
+</style>

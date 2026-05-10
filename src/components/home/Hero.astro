@@ -1,0 +1,277 @@
+---
+---
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-pattern"></div>
+  </div>
+  
+  <div class="hero-content container">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        Discover Authentic<br />
+        <span class="highlight">Local Experiences</span><br />
+        in Tokyo Tama
+      </h1>
+      <p class="hero-subtitle">
+        Explore hidden gems, local food, and traditional culture in Japan's beautiful Tama region. Book directly with expert local guides.
+      </p>
+      <div class="hero-actions">
+        <a href="/experiences" class="btn btn-primary btn-lg">
+          Explore Experiences
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/for-business" class="btn btn-outline btn-lg">
+          Partner With Us
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="hero-card card-1">
+        <div class="card-image">
+          <div class="placeholder-img food"></div>
+        </div>
+        <div class="card-tag">Food Tour</div>
+      </div>
+      <div class="hero-card card-2">
+        <div class="card-image">
+          <div class="placeholder-img izakaya"></div>
+        </div>
+        <div class="card-tag">Izakaya Night</div>
+      </div>
+      <div class="hero-card card-3">
+        <div class="card-image">
+          <div class="placeholder-img onsen"></div>
+        </div>
+        <div class="card-tag">Onsen</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-number">50+</span>
+      <span class="stat-label">Local Experiences</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1000+</span>
+      <span class="stat-label">Happy Travelers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">4.9</span>
+      <span class="stat-label">Average Rating</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: var(--spacing-3xl) 0;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    z-index: -1;
+  }
+  
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+  }
+  
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+  
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .hero-title .highlight {
+    color: var(--color-primary);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-xl);
+    max-width: 480px;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+  
+  .btn-lg {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: 1.0625rem;
+  }
+  
+  .btn-lg svg {
+    margin-left: var(--spacing-xs);
+  }
+  
+  .hero-visual {
+    position: relative;
+    height: 400px;
+  }
+  
+  .hero-card {
+    position: absolute;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .card-1 {
+    top: 0;
+    right: 20%;
+    width: 200px;
+    z-index: 3;
+  }
+  
+  .card-2 {
+    top: 30%;
+    right: 5%;
+    width: 180px;
+    z-index: 2;
+  }
+  
+  .card-3 {
+    top: 55%;
+    right: 35%;
+    width: 160px;
+    z-index: 1;
+  }
+  
+  .card-image {
+    height: 120px;
+    background: var(--color-gray-100);
+  }
+  
+  .placeholder-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .placeholder-img.food {
+    background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+  }
+  
+  .placeholder-img.izakaya {
+    background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  }
+  
+  .placeholder-img.onsen {
+    background: linear-gradient(135deg, #67E8F9 0%, #06B6D4 100%);
+  }
+  
+  .card-tag {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-3xl);
+    padding: var(--spacing-xl);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    margin-top: var(--spacing-xs);
+  }
+  
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-actions {
+      justify-content: center;
+    }
+    
+    .hero-visual {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--spacing-2xl) 0;
+      min-height: auto;
+    }
+    
+    .hero-title {
+      font-size: 2.25rem;
+    }
+    
+    .hero-stats {
+      flex-wrap: wrap;
+      gap: var(--spacing-lg);
+    }
+    
+    .stat-item {
+      flex: 1 1 30%;
+    }
+  }
+</style>

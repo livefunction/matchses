@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperienceCard from '../../components/common/ExperienceCard.astro';
+
+const experiences = [
+  {
+    title: 'Mt. Takao Food Tour',
+    description: 'Explore the ancient trails of Mt. Takao with a local guide. Taste traditional soba, tea, and local snacks along the way.',
+    price: 89,
+    duration: '4 hours',
+    rating: 4.9,
+    reviews: 127,
+    image: 'linear-gradient(135deg, #84CC16 0%, #65A30D 100%)',
+    href: '/experiences/mt-takao-food-tour',
+    highlights: ['Local Guide', 'Food Included', 'Mountain Trail']
+  },
+  {
+    title: 'Tachikawa Izakaya Night',
+    description: 'Experience authentic Japanese pub culture in Tachikawa. Visit 3 local izakaya and sample seasonal dishes and drinks.',
+    price: 75,
+    duration: '3 hours',
+    rating: 4.8,
+    reviews: 89,
+    image: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
+    href: '/experiences/tachikawa-izakaya-night',
+    highlights: ['3 Izakaya', 'Drinks Included', 'English Guide']
+  },
+  {
+    title: 'Onsen Day Trip',
+    description: 'Relax at a traditional Japanese hot spring near Mt. Takao. Enjoy outdoor baths, sauna, and optional massage.',
+    price: 65,
+    duration: '5 hours',
+    rating: 4.9,
+    reviews: 203,
+    image: 'linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)',
+    href: '/experiences/onsen-day-trip',
+    highlights: ['Hot Springs', 'Lunch Included', 'Transport']
+  },
+  {
+    title: 'Tama Forest Nature Walk',
+    description: 'Discover the beautiful forests of Tama with a naturalist guide. See wildlife, learn about local plants, and enjoy peaceful trails.',
+    price: 55,
+    duration: '3 hours',
+    rating: 4.7,
+    reviews: 64,
+    image: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
+    href: '#',
+    highlights: ['Nature Guide', 'Small Group', 'Beginner Friendly']
+  },
+  {
+    title: 'Tachikawa Craft Beer Tour',
+    description: 'Visit local craft breweries in Tachikawa. Sample unique beers, meet the brewers, and enjoy local food pairings.',
+    price: 70,
+    duration: '3 hours',
+    rating: 4.8,
+    reviews: 112,
+    image: 'linear-gradient(135deg, #EAB308 0%, #CA8A04 100%)',
+    href: '#',
+    highlights: ['3 Breweries', 'Beer Tasting', 'Food Pairing']
+  },
+  {
+    title: 'Sanrio Puroland Day Pass',
+    description: 'Visit the adorable Hello Kitty theme park in Tamagawa. Enjoy shows, rides, and character meet-and-greets.',
+    price: 45,
+    duration: 'Full Day',
+    rating: 4.6,
+    reviews: 341,
+    image: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
+    href: '#',
+    highlights: ['All Access', 'Shows Included', 'Souvenir']
+  }
+];
+---
+
+<BaseLayout 
+  title="All Experiences - MATCHS"
+  description="Browse all local experiences in Tokyo Tama region. Food tours, izakaya, hot springs, and more. Book directly with local experts."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="page-tag">Our Experiences</span>
+      <h1 class="page-title">Discover Tokyo Tama</h1>
+      <p class="page-subtitle">
+        Authentic local experiences led by passionate experts. Book instantly with no reservation fees.
+      </p>
+    </div>
+  </section>
+  
+  <section class="experiences-section section">
+    <div class="container">
+      <div class="filters">
+        <div class="filter-group">
+          <label class="filter-label">Category</label>
+          <select class="filter-select">
+            <option value="">All Categories</option>
+            <option value="food">Food & Drink</option>
+            <option value="culture">Culture</option>
+            <option value="nature">Nature</option>
+            <option value="entertainment">Entertainment</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Duration</label>
+          <select class="filter-select">
+            <option value="">Any Duration</option>
+            <option value="short">Under 3 hours</option>
+            <option value="medium">3-5 hours</option>
+            <option value="long">Full Day</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Price Range</label>
+          <select class="filter-select">
+            <option value="">Any Price</option>
+            <option value="under50">Under $50</option>
+            <option value="50to100">$50 - $100</option>
+            <option value="over100">Over $100</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="results-info">
+        <span class="results-count">{experiences.length} experiences found</span>
+      </div>
+      
+      <div class="experiences-grid">
+        {experiences.map(exp => (
+          <ExperienceCard {...exp} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .page-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .experiences-section {
+    padding-top: var(--spacing-2xl);
+  }
+  
+  .filters {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .filter-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+  
+  .filter-select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9375rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-gray-700);
+    min-width: 160px;
+    cursor: pointer;
+  }
+  
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  .results-info {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .results-count {
+    font-size: 0.9375rem;
+    color: var(--color-gray-500);
+  }
+  
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  @media (max-width: 1024px) {
+    .experiences-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .experiences-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filters {
+      flex-direction: column;
+    }
+    
+    .filter-select {
+      width: 100%;
+    }
+  }
+</style>

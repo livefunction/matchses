@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import FeaturedExperiences from '../components/home/FeaturedExperiences.astro';
+import ExpertCurated from '../components/home/ExpertCurated.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import TrustSection from '../components/home/TrustSection.astro';
+---
+
+<BaseLayout title="MATCHS - Local Experiences in Tokyo Tama">
+  <Hero />
+  <FeaturedExperiences />
+  <ExpertCurated />
+  <HowItWorks />
+  <TrustSection />
+  
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready for Your Adventure?</h2>
+        <p class="cta-subtitle">Join thousands of travelers who've discovered the hidden gems of Tokyo Tama.</p>
+        <div class="cta-actions">
+          <a href="/experiences" class="btn btn-primary btn-lg">
+            Book Your Experience
+          </a>
+          <a href="/contact" class="btn btn-outline btn-lg">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-black) 0%, var(--color-gray-900) 100%);
+    color: var(--color-white);
+  }
+  
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .cta-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-gray-300);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .cta-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .cta-section :global(.btn-outline) {
+    border-color: var(--color-gray-500);
+    color: var(--color-white);
+  }
+  
+  .cta-section :global(.btn-outline:hover) {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+</style>

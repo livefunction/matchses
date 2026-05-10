@@ -1,0 +1,127 @@
+---
+import ExperienceCard from '../common/ExperienceCard.astro';
+
+const experiences = [
+  {
+    title: 'Mt. Takao Food Tour',
+    description: 'Explore the ancient trails of Mt. Takao with a local guide. Taste traditional soba, tea, and local snacks along the way.',
+    price: 89,
+    duration: '4 hours',
+    rating: 4.9,
+    reviews: 127,
+    image: 'linear-gradient(135deg, #84CC16 0%, #65A30D 100%)',
+    href: '/experiences/mt-takao-food-tour',
+    highlights: ['Local Guide', 'Food Included', 'Mountain Trail']
+  },
+  {
+    title: 'Tachikawa Izakaya Night',
+    description: 'Experience authentic Japanese pub culture in Tachikawa. Visit 3 local izakaya and sample seasonal dishes and drinks.',
+    price: 75,
+    duration: '3 hours',
+    rating: 4.8,
+    reviews: 89,
+    image: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
+    href: '/experiences/tachikawa-izakaya-night',
+    highlights: ['3 Izakaya', 'Drinks Included', 'English Guide']
+  },
+  {
+    title: 'Onsen Day Trip',
+    description: 'Relax at a traditional Japanese hot spring near Mt. Takao. Enjoy outdoor baths, sauna, and optional massage.',
+    price: 65,
+    duration: '5 hours',
+    rating: 4.9,
+    reviews: 203,
+    image: 'linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)',
+    href: '/experiences/onsen-day-trip',
+    highlights: ['Hot Springs', 'Lunch Included', 'Transport']
+  }
+];
+---
+
+<section class="featured-section section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Featured Experiences</span>
+      <h2 class="section-title">Discover Our Most Popular Tours</h2>
+      <p class="section-subtitle">
+        Hand-picked experiences led by local experts. Book instantly with no reservation fees.
+      </p>
+    </div>
+    
+    <div class="experiences-grid">
+      {experiences.map(exp => (
+        <ExperienceCard {...exp} />
+      ))}
+    </div>
+    
+    <div class="section-cta">
+      <a href="/experiences" class="btn btn-secondary">
+        View All Experiences
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-section {
+    background: var(--color-gray-50);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-3xl);
+  }
+  
+  .section-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .section-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-gray-700);
+  }
+  
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .section-cta {
+    text-align: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .experiences-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .experiences-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>

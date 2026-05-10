@@ -1,0 +1,262 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  location: string;
+  bio: string;
+  quote: string;
+  yearsExperience: string;
+  specialties: string[];
+  imageGradient: string;
+  rating: number;
+  reviewCount: number;
+  hostHref: string;
+}
+
+const { name, role, location, bio, quote, yearsExperience, specialties, imageGradient, rating, reviewCount, hostHref } = Astro.props;
+---
+
+<div class="host-profile">
+  <div class="host-card">
+    <div class="host-image" style={`background: ${imageGradient}`}>
+      <div class="host-avatar">
+        <span>{name.split(' ').map(n => n[0]).join('')}</span>
+      </div>
+    </div>
+    <div class="host-info">
+      <span class="host-badge">{role}</span>
+      <h3 class="host-name">
+        <a href={hostHref}>{name}</a>
+      </h3>
+      <p class="host-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        {location}
+      </p>
+      
+      <div class="host-stats">
+        <div class="stat">
+          <span class="stat-value">{rating}</span>
+          <span class="stat-star">★</span>
+          <span class="stat-label">({reviewCount} reviews)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">{yearsExperience}</span>
+        </div>
+      </div>
+      
+      <div class="host-specialties">
+        {specialties.map(s => (
+          <span class="specialty-tag">{s}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <div class="host-story">
+    <p class="bio-text">{bio}</p>
+    <blockquote class="quote">"{quote}"</blockquote>
+  </div>
+  
+  <div class="host-cta">
+    <a href={hostHref} class="host-profile-link">
+      Learn more about {name.split(' ')[0]}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<style>
+  .host-profile {
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .host-card {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-primary);
+  }
+
+  .host-image {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .host-avatar {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .host-avatar span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  .host-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .host-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-full);
+    width: fit-content;
+  }
+
+  .host-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin: 0;
+  }
+
+  .host-name a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .host-name a:hover {
+    color: var(--color-primary);
+  }
+
+  .host-location {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    margin: 0;
+  }
+
+  .host-stats {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .stat-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  .stat-star {
+    color: var(--color-accent);
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+  }
+
+  .host-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+  }
+
+  .specialty-tag {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-white);
+    color: var(--color-gray-700);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .host-story {
+    margin-top: var(--spacing-lg);
+  }
+
+  .bio-text {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+    line-height: 1.7;
+    margin: 0 0 var(--spacing-md);
+  }
+
+  .quote {
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--color-primary-dark);
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin: 0;
+  }
+
+  .host-cta {
+    margin-top: var(--spacing-md);
+  }
+
+  .host-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .host-profile-link:hover {
+    gap: var(--spacing-sm);
+  }
+
+  @media (max-width: 640px) {
+    .host-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .host-location {
+      justify-content: center;
+    }
+
+    .host-stats {
+      justify-content: center;
+    }
+
+    .host-specialties {
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="600" y="280" font-family="Georgia, serif" font-size="120" font-weight="bold" fill="white" text-anchor="middle">MATCHS</text>
+  <text x="600" y="360" font-family="system-ui, sans-serif" font-size="36" fill="rgba(255,255,255,0.9)" text-anchor="middle">Local Experiences in Tokyo Tama</text>
+  <text x="600" y="480" font-family="system-ui, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)" text-anchor="middle">Discover authentic food tours, izakaya, and more</text>
+</svg>

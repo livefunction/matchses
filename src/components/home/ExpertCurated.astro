@@ -1,0 +1,248 @@
+---
+const curatedLists = [
+  {
+    id: 'first-timers',
+    title: 'Perfect for First-Timers',
+    description: 'The essential experiences everyone should try at least once',
+    icon: 'star',
+    experiences: [
+      { name: 'Mt. Takao Food Tour', reason: 'The BEST local food in one afternoon', href: '/experiences/mt-takao-food-tour' },
+      { name: 'Onsen Day Trip', reason: 'Pure relaxation, no experience needed', href: '/experiences/onsen-day-trip' },
+    ]
+  },
+  {
+    id: 'local-secrets',
+    title: 'What Locals Actually Do',
+    description: 'Skip the tourist traps. These are the real local favorites.',
+    icon: 'map',
+    experiences: [
+      { name: 'Tachikawa Izakaya Night', reason: 'Where locals go after work', href: '/experiences/tachikawa-izakaya-night' },
+      { name: 'Mt. Takao Food Tour', reason: 'Hidden spots only locals know', href: '/experiences/mt-takao-food-tour' },
+    ]
+  },
+  {
+    id: 'rainy-day',
+    title: 'Works on Rainy Days',
+    description: 'Don\'t let the weather ruin your plans. These are indoor-friendly.',
+    icon: 'cloud',
+    experiences: [
+      { name: 'Tachikawa Izakaya Night', reason: 'Perfect rainy night activity', href: '/experiences/tachikawa-izakaya-night' },
+      { name: 'Onsen Day Trip', reason: 'Indoor and incredibly relaxing', href: '/experiences/onsen-day-trip' },
+    ]
+  }
+];
+---
+
+<section class="curated-section section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Hand-Picked by Experts</span>
+      <h2 class="section-title">Not Sure Where to Start?</h2>
+      <p class="section-subtitle">
+        We've curated the perfect combinations for different needs. Let us help you find your match.
+      </p>
+    </div>
+    
+    <div class="curated-grid">
+      {curatedLists.map(list => (
+        <div class="curated-card" id={list.id}>
+          <div class="curated-header">
+            <div class="curated-icon">
+              {list.icon === 'star' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              )}
+              {list.icon === 'map' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/>
+                  <line x1="8" y1="2" x2="8" y2="18"/>
+                  <line x1="16" y1="6" x2="16" y2="22"/>
+                </svg>
+              )}
+              {list.icon === 'cloud' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                </svg>
+              )}
+            </div>
+            <div class="curated-title-group">
+              <h3 class="curated-title">{list.title}</h3>
+              <p class="curated-description">{list.description}</p>
+            </div>
+          </div>
+          
+          <div class="curated-experiences">
+            {list.experiences.map(exp => (
+              <a href={exp.href} class="curated-experience">
+                <span class="exp-name">{exp.name}</span>
+                <span class="exp-reason">{exp.reason}</span>
+                <span class="exp-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .curated-section {
+    background: var(--color-white);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-3xl);
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .section-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-gray-700);
+  }
+
+  .curated-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .curated-card {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .curated-card:hover {
+    background: var(--color-white);
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .curated-header {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .curated-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+  }
+
+  .curated-title-group {
+    flex: 1;
+  }
+
+  .curated-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin: 0 0 var(--spacing-xs);
+  }
+
+  .curated-description {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .curated-experiences {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .curated-experience {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .curated-experience:hover {
+    background: var(--color-primary-light);
+  }
+
+  .exp-name {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+
+  .exp-reason {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    flex: 1;
+  }
+
+  .exp-arrow {
+    color: var(--color-gray-400);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s ease;
+  }
+
+  .curated-experience:hover .exp-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 1024px) {
+    .curated-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .curated-card {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>

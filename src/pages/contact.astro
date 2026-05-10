@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Contact Us - MATCHS"
+  description="Get in touch with MATCHS. We're here to help with bookings, inquiries, and partnership questions."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="page-tag">Contact</span>
+      <h1 class="page-title">Get In Touch</h1>
+      <p class="page-subtitle">
+        Have questions? We'd love to hear from you. Our team typically responds within 24 hours.
+      </p>
+    </div>
+  </section>
+  
+  <section class="contact-section section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <h3 class="info-title">Email</h3>
+            <p class="info-text">hello@matchses.com</p>
+            <p class="info-note">We reply within 24 hours</p>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <h3 class="info-title">Location</h3>
+            <p class="info-text">Tokyo, Tama Region</p>
+            <p class="info-note">Japan</p>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="info-title">Hours</h3>
+            <p class="info-text">Mon - Fri: 9AM - 6PM JST</p>
+            <p class="info-note">Closed on holidays</p>
+          </div>
+        </div>
+        
+        <div class="contact-form-wrapper">
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-input" required placeholder="Your name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" class="form-select" required>
+                <option value="">Select a topic</option>
+                <option value="booking">Booking Question</option>
+                <option value="partner">Partner Inquiry</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-textarea" rows="6" required placeholder="Tell us how we can help..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">
+              Send Message
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L11.586 10H4a1 1 0 100 2h7.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" fill="currentColor"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="faq-mini-section section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      
+      <div class="faq-mini-grid">
+        <div class="faq-mini-item">
+          <h3>How do I book an experience?</h3>
+          <p>Simply click "Book Now" on any experience page, select your date and number of guests, and complete the payment through Stripe.</p>
+        </div>
+        <div class="faq-mini-item">
+          <h3>Can I cancel my booking?</h3>
+          <p>Yes! Free cancellation is available up to 24 hours before the experience. You'll receive a full refund.</p>
+        </div>
+        <div class="faq-mini-item">
+          <h3>How do I become a partner?</h3>
+          <p>Click "Apply Now" on our For Business page or contact us directly. We'll get back to you within 2 business days.</p>
+        </div>
+        <div class="faq-mini-item">
+          <h3>What languages do you support?</h3>
+          <p>Currently we operate in English. Japanese support is coming soon. All our guides speak fluent English.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .page-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .contact-section {
+    padding-top: var(--spacing-2xl);
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+  }
+  
+  .contact-info {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+  
+  .info-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+  }
+  
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .info-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .info-text {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+  
+  .info-note {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    margin-top: var(--spacing-xs);
+  }
+  
+  .contact-form-wrapper {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .contact-form {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 0.9375rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    transition: border-color 0.2s;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  .form-textarea {
+    resize: vertical;
+  }
+  
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .faq-mini-section {
+    background: var(--color-gray-50);
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+  
+  .faq-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .faq-mini-item {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+  }
+  
+  .faq-mini-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .faq-mini-item p {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .faq-mini-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -5,9 +5,52 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+    inputs:
+      skip_tests:
+        description: 'Skip Playwright tests'
+        required: false
+        default: 'false'
+        type: boolean
+
 jobs:
-  build:
+  test:
+    name: Playwright Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_URL: ${{ vars.PUBLIC_URL }}
+
+      - name: Run Playwright tests
+        if: github.event.inputs.skip_tests != 'true'
+        run: npx playwright test --reporter=list
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ vars.PUBLIC_URL }}
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event.inputs.skip_tests != 'true'
     
     steps:
       - name: Checkout code
@@ -35,8 +78,10 @@ jobs:
           retention-days: 1
 
   deploy:
-    needs: build
+    name: Deploy to CoreServer
     runs-on: ubuntu-latest
+    needs: build
+    if: github.event.inputs.skip_tests != 'true'
     
     steps:
       - name: Download artifact
@@ -45,10 +90,63 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Deploy to server
+      - name: Setup lftp
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy via FTP
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          curl -T dist/* ftp://$FTP_HOST/ --user "$FTP_USERNAME:$FTP_PASSWORD" --ftp-create-dirs
+          lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; mirror -R --verbose dist/ / ; bye" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+
+  healthcheck:
+    name: Health Check
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event.inputs.skip_tests != 'true'
+    
+    steps:
+      - name: Wait for deployment
+        run: sleep 10
+
+      - name: Check production URL
+        run: |
+          curl -sf ${{ vars.PUBLIC_URL }} > /dev/null && echo "[OK] Production is healthy" || { echo "[FAIL] Health check failed"; exit 1; }
+
+  deploy-skip-tests:
+    name: Deploy (skip tests)
+    runs-on: ubuntu-latest
+    if: github.event.inputs.skip_tests == 'true'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_URL: ${{ vars.PUBLIC_URL }}
+
+      - name: Setup lftp
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; mirror -R --verbose dist/ / ; bye" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST

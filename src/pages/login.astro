@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Login - MATCHS"
+  description="Login to your MATCHS account. Book experiences, message guides, and manage your bookings."
+>
+  <section class="auth-hero">
+    <div class="container">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="traveler">I'm a Traveler</button>
+        <button class="auth-tab" data-tab="guide">I'm a Guide</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="auth-section section">
+    <div class="container">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle" id="authSubtitle">Login to book your next adventure</p>
+          </div>
+
+          <form class="auth-form" id="loginForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com" />
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-input" required placeholder="Your password" />
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-label">
+                <input type="checkbox" name="remember" />
+                <span>Remember me</span>
+              </label>
+              <a href="/forgot-password" class="forgot-link">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">
+              Login
+            </button>
+          </form>
+
+          <div class="auth-divider">
+            <span>or continue with</span>
+          </div>
+
+          <div class="social-login">
+            <button class="social-btn google">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Google
+            </button>
+            <button class="social-btn apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.35-.75 3.57-1.01.98-.95 1.62-.72 2.64-.35.42-.74.91-1.89.7-2.82-.56-2.01-4.03-1.35-4.36-3.53-.25-1.35-.15-2.61-.18-3.12-.19-.91-.94-1.89-2.07-1.91-.72 0-2.26.26-3.35 1.38-.3.31-.43.7-.72 1.04-.42.31-1.17.22-1.45.69-.25.5-.14 1.45-.07 2.11-.15.75-.36 1.73-.45 2.61-1.28 3.58-3.74 5.83-1.42 7.86.75.68 1.93.91 2.73 1.1 1.5.32 2.94.19 3.42.69 1.01 1.13.52 3.03-.38 4.28z"/>
+              </svg>
+              Apple
+            </button>
+          </div>
+
+          <p class="auth-footer">
+            Don't have an account? <a href="/register">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .auth-hero {
+    background: var(--color-gray-50);
+    padding: var(--spacing-xl) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .auth-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .auth-tab {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+    background: transparent;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .auth-tab:hover {
+    border-color: var(--color-gray-300);
+  }
+
+  .auth-tab.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .auth-section {
+    padding-top: var(--spacing-2xl);
+  }
+
+  .auth-container {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .auth-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .auth-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .auth-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .auth-subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 0.9375rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    color: var(--color-gray-700);
+  }
+
+  .checkbox-label input {
+    width: 16px;
+    height: 16px;
+  }
+
+  .forgot-link {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .forgot-link:hover {
+    text-decoration: underline;
+  }
+
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+  }
+
+  .auth-divider::before,
+  .auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-gray-200);
+  }
+
+  .auth-divider span {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+  }
+
+  .social-login {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-gray-400);
+  }
+
+  .auth-footer {
+    text-align: center;
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    margin-top: var(--spacing-lg);
+  }
+
+  .auth-footer a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .auth-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .guide-form .form-group:last-of-type {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  @media (max-width: 480px) {
+    .auth-tabs {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .social-login {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('.auth-tab');
+  const subtitle = document.getElementById('authSubtitle');
+  const form = document.getElementById('loginForm');
+  const title = document.querySelector('.auth-title');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      if (tab.dataset.tab === 'guide') {
+        subtitle.textContent = 'Login to manage your experiences and bookings';
+        title.textContent = 'Guide Portal';
+        form.classList.add('guide-form');
+      } else {
+        subtitle.textContent = 'Login to book your next adventure';
+        title.textContent = 'Welcome Back';
+        form.classList.remove('guide-form');
+      }
+    });
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.href = '/dashboard';
+  });
+</script>

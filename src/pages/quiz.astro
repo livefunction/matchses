@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Find Your Perfect Experience - MATCHS"
+  description="Take our quick quiz to discover which Tokyo Tama experience matches your personality and travel style."
+>
+  <section class="quiz-hero">
+    <div class="container">
+      <span class="page-tag">3 Questions</span>
+      <h1 class="page-title">Find Your Perfect Experience</h1>
+      <p class="page-subtitle">
+        Answer 3 quick questions and we'll match you with the perfect Tokyo Tama adventure.
+      </p>
+    </div>
+  </section>
+
+  <section class="quiz-section section">
+    <div class="container">
+      <div class="quiz-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="quiz-card" id="quizCard">
+          <div class="question-number" id="questionNumber">Question 1 of 3</div>
+          
+          <div class="question-content" id="questionContent">
+          </div>
+          
+          <div class="options" id="options">
+          </div>
+        </div>
+        
+        <div class="quiz-result hidden" id="quizResult">
+          <div class="result-badge">
+            <div class="result-icon" id="resultIcon"></div>
+          </div>
+          <h2 class="result-title" id="resultTitle"></h2>
+          <p class="result-description" id="resultDescription"></p>
+          
+          <div class="result-match" id="resultMatch"></div>
+          
+          <div class="result-actions">
+            <a href="#" class="btn btn-primary btn-lg" id="bookBtn">
+              Book This Experience
+            </a>
+            <a href="/experiences" class="btn btn-outline btn-lg">
+              Browse All
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quiz-hero {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .page-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .quiz-section {
+    padding-top: var(--spacing-2xl);
+  }
+  
+  .quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background: var(--color-gray-200);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-2xl);
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+    width: 33%;
+  }
+  
+  .quiz-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .question-number {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .question-content {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.4;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--color-gray-50);
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-size: 1rem;
+    color: var(--color-gray-700);
+  }
+  
+  .option-btn:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+  }
+  
+  .option-btn.selected {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-black);
+  }
+  
+  .option-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .option-btn:hover .option-icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  .quiz-result {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  
+  .result-badge {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .result-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .result-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .result-description {
+    font-size: 1.0625rem;
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+  
+  .result-match {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .result-match-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .result-match-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .result-match-reason {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+  }
+  
+  .result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media (max-width: 640px) {
+    .quiz-card {
+      padding: var(--spacing-lg);
+    }
+    
+    .question-content {
+      font-size: 1.125rem;
+    }
+  }
+</style>
+
+<script>
+  const questions = [
+    {
+      question: "What sounds most appealing to you?",
+      options: [
+        { id: "food", icon: "🍜", text: "Authentic local food & drinks" },
+        { id: "nature", icon: "🏔️", text: "Peaceful nature & scenery" },
+        { id: "relax", icon: "♨️", text: "Relaxing hot springs & wellness" },
+        { id: "social", icon: "🍺", text: "Local bar culture & socializing" }
+      ]
+    },
+    {
+      question: "How do you prefer to experience a place?",
+      options: [
+        { id: "guide", icon: "👤", text: "With a knowledgeable local guide" },
+        { id: "alone", icon: "🚶", text: "At my own pace, exploring solo" },
+        { id: "group", icon: "👥", text: "With a small group of travelers" }
+      ]
+    },
+    {
+      question: "What's your energy level for today?",
+      options: [
+        { id: "low", icon: "😌", text: "Chill — I want to unwind" },
+        { id: "medium", icon: "🚶", text: "Moderate — some activity is good" },
+        { id: "high", icon: "⚡", text: "Full energy — show me everything!" }
+      ]
+    }
+  ];
+
+  const results = {
+    "food-guide": {
+      title: "Mt. Takao Food Tour",
+      description: "Perfect match! Your love for local food and desire for a knowledgeable guide makes this experience ideal for you.",
+      href: "/experiences/mt-takao-food-tour",
+      gradient: "linear-gradient(135deg, #84CC16 0%, #65A30D 100%)",
+      reason: "You'll taste authentic soba, tea, and local snacks with Takeshi, a former sushi chef who knows every hidden spot."
+    },
+    "relax-low": {
+      title: "Onsen Day Trip",
+      description: "This is exactly what you need! Relax, recharge, and let the hot springs do the work.",
+      href: "/experiences/onsen-day-trip",
+      gradient: "linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)",
+      reason: "Unwind at traditional Japanese hot springs with Yuki, who transformed from corporate life to wellness guide."
+    },
+    "social-medium": {
+      title: "Tachikawa Izakaya Night",
+      description: "Great choice! Experience the real Japanese pub culture with locals and fellow travelers.",
+      href: "/experiences/tachikawa-izakaya-night",
+      gradient: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+      reason: "Visit 3 authentic izakaya, taste seasonal dishes, and make memories with your host Takeshi."
+    },
+    "nature-high": {
+      title: "Mt. Takao Food Tour",
+      description: "Your energy and curiosity make you a perfect fit for this mountain adventure!",
+      href: "/experiences/mt-takao-food-tour",
+      gradient: "linear-gradient(135deg, #84CC16 0%, #65A30D 100%)",
+      reason: "Combine hiking, nature, and incredible food on Mt. Takao with guide Kenji's forest expertise."
+    },
+    "relax-guide": {
+      title: "Onsen Day Trip",
+      description: "With a guide to lead the way, you can fully relax and enjoy the experience.",
+      href: "/experiences/onsen-day-trip",
+      gradient: "linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)",
+      reason: "Yuki will take care of everything while you focus on relaxation and wellness."
+    },
+    "food-medium": {
+      title: "Tachikawa Izakaya Night",
+      description: "If you love food but prefer a more social, evening atmosphere, this is your match!",
+      href: "/experiences/tachikawa-izakaya-night",
+      gradient: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+      reason: "Experience authentic Japanese pub culture with great food and drinks in a local neighborhood."
+    },
+    "default": {
+      title: "Mt. Takao Food Tour",
+      description: "A versatile experience that combines great food with local culture and beautiful scenery.",
+      href: "/experiences/mt-takao-food-tour",
+      gradient: "linear-gradient(135deg, #84CC16 0%, #65A30D 100%)",
+      reason: "Our most popular experience — a perfect introduction to Tokyo Tama's local food scene."
+    }
+  };
+
+  let currentQuestion = 0;
+  let answers = { energy: "", style: "", vibe: "" };
+
+  function renderQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of 3`;
+    document.getElementById('progressFill').style.width = `${((currentQuestion + 1) / 3) * 100}%`;
+    document.getElementById('questionContent').textContent = q.question;
+    
+    const optionsEl = document.getElementById('options');
+    optionsEl.innerHTML = q.options.map(opt => `
+      <button class="option-btn" data-id="${opt.id}">
+        <span class="option-icon">${opt.icon}</span>
+        <span>${opt.text}</span>
+      </button>
+    `).join('');
+    
+    optionsEl.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', () => selectOption(btn.dataset.id));
+    });
+  }
+
+  function selectOption(id) {
+    if (currentQuestion === 0) answers.energy = id;
+    else if (currentQuestion === 1) answers.style = id;
+    else answers.vibe = id;
+    
+    if (currentQuestion < 2) {
+      currentQuestion++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    document.getElementById('quizCard').classList.add('hidden');
+    document.getElementById('progressFill').style.width = '100%';
+    
+    let result;
+    if (answers.energy === "food" && answers.style === "guide") {
+      result = results["food-guide"];
+    } else if (answers.vibe === "low" || (answers.energy === "relax")) {
+      result = results["relax-low"];
+    } else if (answers.energy === "social") {
+      result = results["social-medium"];
+    } else if (answers.energy === "nature" && answers.vibe === "high") {
+      result = results["nature-high"];
+    } else if (answers.energy === "relax" && answers.style === "guide") {
+      result = results["relax-guide"];
+    } else if (answers.energy === "food") {
+      result = results["food-medium"];
+    } else {
+      result = results["default"];
+    }
+    
+    document.getElementById('quizResult').classList.remove('hidden');
+    document.getElementById('resultTitle').textContent = result.title;
+    document.getElementById('resultDescription').textContent = result.description;
+    document.getElementById('bookBtn').href = result.href;
+    document.getElementById('resultMatch').innerHTML = `
+      <p class="result-match-title">Why this is your perfect match:</p>
+      <p class="result-match-name">${result.title}</p>
+      <p class="result-match-reason">${result.reason}</p>
+    `;
+    
+    const icon = document.getElementById('resultIcon');
+    icon.style.background = result.gradient;
+    icon.innerHTML = '<svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" stroke="white" stroke-width="2" fill="none"/></svg>';
+  }
+
+  renderQuestion();
+</script>

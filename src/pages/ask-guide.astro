@@ -1,0 +1,471 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Ask a Guide - MATCHS"
+  description="Have questions before booking? Connect with our local guides and get to know them better."
+>
+  <section class="page-header">
+    <div class="container">
+      <span class="page-tag">Pre-Experience Consultation</span>
+      <h1 class="page-title">Ask a Guide</h1>
+      <p class="page-subtitle">
+        Not sure which experience is right for you? Ask a local guide your questions before booking.
+      </p>
+    </div>
+  </section>
+  
+  <section class="consultation-section section">
+    <div class="container">
+      <div class="consultation-grid">
+        <div class="guide-list">
+          <h2 class="section-subtitle">Choose a Guide</h2>
+          <div class="guide-cards">
+            <button class="guide-card selected" data-guide="sato">
+              <div class="guide-avatar">TS</div>
+              <div class="guide-info">
+                <span class="guide-name">Takeshi Sato</span>
+                <span class="guide-specialty">Food & Culture</span>
+              </div>
+            </button>
+            <button class="guide-card" data-guide="tanaka">
+              <div class="guide-avatar">YT</div>
+              <div class="guide-info">
+                <span class="guide-name">Yuki Tanaka</span>
+                <span class="guide-specialty">Wellness & Onsen</span>
+              </div>
+            </button>
+            <button class="guide-card" data-guide="watanabe">
+              <div class="guide-avatar">KW</div>
+              <div class="guide-info">
+                <span class="guide-name">Kenji Watanabe</span>
+                <span class="guide-specialty">Nature & Forests</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        
+        <div class="message-area">
+          <div class="guide-profile" id="guideProfile">
+            <div class="profile-header">
+              <div class="profile-avatar">TS</div>
+              <div class="profile-info">
+                <h3 class="profile-name">Takeshi Sato</h3>
+                <p class="profile-bio">Former sushi chef, 25+ years in Tama. I love sharing hidden food spots and local stories.</p>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <span class="stat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                4.9 (127 reviews)
+              </span>
+              <span class="stat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                200+ experiences
+              </span>
+            </div>
+          </div>
+          
+          <div class="message-form">
+            <div class="suggested-questions">
+              <span class="suggested-label">Suggested:</span>
+              <button class="suggested-btn" data-question="What should I wear for the food tour?">What to wear?</button>
+              <button class="suggested-btn" data-question="Can you accommodate vegetarian options?">Vegetarian?</button>
+              <button class="suggested-btn" data-question="Is this suitable for children?">For kids?</button>
+            </div>
+            
+            <div class="form-group">
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
+                rows="4" 
+                placeholder="Type your message to Takeshi..."
+              ></textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com" />
+              </div>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-input" required placeholder="Your name" />
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">
+              Send Message
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L11.586 10H4a1 1 0 100 2h7.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+          
+          <p class="privacy-note">
+            Messages are typically replied within 24 hours. Your email is only used for this consultation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 50%, #F0F9FF 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .page-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-gray-700);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .consultation-section {
+    padding-top: var(--spacing-2xl);
+  }
+  
+  .consultation-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+  
+  .section-subtitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .guide-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .guide-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-white);
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .guide-card:hover {
+    border-color: var(--color-gray-300);
+  }
+  
+  .guide-card.selected {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+  }
+  
+  .guide-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    flex-shrink: 0;
+  }
+  
+  .guide-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .guide-name {
+    font-weight: 600;
+    color: var(--color-black);
+    font-size: 0.9375rem;
+  }
+  
+  .guide-specialty {
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+  }
+  
+  .message-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+  
+  .guide-profile {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+  }
+  
+  .profile-header {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-white);
+    flex-shrink: 0;
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .profile-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .profile-bio {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+    line-height: 1.5;
+  }
+  
+  .profile-stats {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-gray-100);
+  }
+  
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+  }
+  
+  .stat svg {
+    color: var(--color-primary);
+  }
+  
+  .message-form {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .suggested-questions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .suggested-label {
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+  }
+  
+  .suggested-btn {
+    font-size: 0.8125rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-gray-100);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .suggested-btn:hover {
+    background: var(--color-gray-200);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+  
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 0.9375rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    transition: border-color 0.2s;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .privacy-note {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .consultation-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .guide-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const guides = {
+    sato: {
+      initials: 'TS',
+      name: 'Takeshi Sato',
+      bio: 'Former sushi chef, 25+ years in Tama. I love sharing hidden food spots and local stories.',
+      rating: '4.9 (127 reviews)',
+      experiences: '200+ experiences'
+    },
+    tanaka: {
+      initials: 'YT',
+      name: 'Yuki Tanaka',
+      bio: 'Wellness coach and onsen enthusiast. Let me help you unwind and discover authentic hot springs.',
+      rating: '5.0 (89 reviews)',
+      experiences: '150+ experiences'
+    },
+    watanabe: {
+      initials: 'KW',
+      name: 'Kenji Watanabe',
+      bio: 'Nature guide and forest therapist. I can identify 200+ plant species and know where to spot wildlife.',
+      rating: '4.8 (103 reviews)',
+      experiences: '180+ experiences'
+    }
+  };
+
+  document.querySelectorAll('.guide-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.guide-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      
+      const guideId = card.dataset.guide;
+      const guide = guides[guideId];
+      
+      const profile = document.getElementById('guideProfile');
+      profile.querySelector('.profile-avatar').textContent = guide.initials;
+      profile.querySelector('.profile-name').textContent = guide.name;
+      profile.querySelector('.profile-bio').textContent = guide.bio;
+      
+      const stats = profile.querySelector('.profile-stats');
+      stats.innerHTML = `
+        <span class="stat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          ${guide.rating}
+        </span>
+        <span class="stat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          ${guide.experiences}
+        </span>
+      `;
+      
+      const textarea = document.getElementById('message');
+      textarea.placeholder = `Type your message to ${guide.name}...`;
+    });
+  });
+
+  document.querySelectorAll('.suggested-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const textarea = document.getElementById('message');
+      textarea.value = btn.dataset.question;
+    });
+  });
+</script>

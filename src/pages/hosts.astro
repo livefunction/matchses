@@ -17,10 +17,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <section class="filter-section section">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">Interests:</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-filter="all">All</button>
+            <button class="filter-tag" data-filter="food">Food & Cuisine</button>
+            <button class="filter-tag" data-filter="nature">Nature</button>
+            <button class="filter-tag" data-filter="wellness">Wellness</button>
+            <button class="filter-tag" data-filter="culture">Culture</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Communication:</span>
+          <div class="filter-tags">
+            <button class="filter-tag energy-filter active" data-filter="all">All</button>
+            <button class="filter-tag energy-filter" data-filter="talkative">Talkative</button>
+            <button class="filter-tag energy-filter" data-filter="balanced">Balanced</button>
+            <button class="filter-tag energy-filter" data-filter="quiet">Quiet</button>
+          </div>
+        </div>
+        <div class="ask-guide-link">
+          <a href="/ask-guide" class="btn btn-outline btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Not sure? Ask a guide first
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="hosts-section section">
     <div class="container">
       <div class="hosts-grid">
-        <article class="host-card">
+        <article class="host-card" data-interests="food culture history" data-energy="talkative">
           <div class="host-image">
             <div class="host-image-placeholder host-sato"></div>
           </div>
@@ -49,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                 </span>
-                <span>Born & raised in Tama</span>
+                <span>Tama Resident, 25+ years</span>
               </div>
               <div class="fact">
                 <span class="fact-icon">
@@ -60,6 +96,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </span>
                 <span>Leading tours since 2019</span>
               </div>
+            </div>
+            <div class="host-interests">
+              <h3 class="interests-label">Interests:</h3>
+              <div class="interest-tags">
+                <span class="tag tag-food">Food & Cuisine</span>
+                <span class="tag tag-culture">Local Culture</span>
+                <span class="tag tag-history">History</span>
+              </div>
+            </div>
+            <div class="host-energy">
+              <h3 class="energy-label">Communication Style:</h3>
+              <div class="energy-badge badge-talkative">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Warm & Talkative
+              </div>
+              <p class="energy-desc">Happy to chat about anything - from sushi making to local life in Tama.</p>
+            </div>
+            <div class="host-ideal">
+              <h3 class="ideal-label">Perfect for:</h3>
+              <ul class="ideal-list">
+                <li>Food lovers who want deep local recommendations</li>
+                <li>First-time visitors seeking authentic experience</li>
+                <li>Those who enjoy conversation while exploring</li>
+              </ul>
             </div>
             <div class="host-experiences">
               <h3 class="experiences-label">Leads:</h3>
@@ -76,7 +138,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </article>
 
-        <article class="host-card">
+        <article class="host-card" data-interests="wellness culture nature" data-energy="balanced">
           <div class="host-image">
             <div class="host-image-placeholder host-yuki"></div>
           </div>
@@ -105,7 +167,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                 </span>
-                <span> Tama Resident, 8 years</span>
+                <span>Tama Resident, 8 years</span>
               </div>
               <div class="fact">
                 <span class="fact-icon">
@@ -116,6 +178,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </span>
                 <span>Leading tours since 2021</span>
               </div>
+            </div>
+            <div class="host-interests">
+              <h3 class="interests-label">Interests:</h3>
+              <div class="interest-tags">
+                <span class="tag tag-wellness">Wellness</span>
+                <span class="tag tag-culture">Local Culture</span>
+                <span class="tag tag-nature">Nature</span>
+              </div>
+            </div>
+            <div class="host-energy">
+              <h3 class="energy-label">Communication Style:</h3>
+              <div class="energy-badge badge-balanced">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 16v-4"/>
+                  <path d="M12 8h.01"/>
+                </svg>
+                Balanced & Thoughtful
+              </div>
+              <p class="energy-desc">Good conversation, but respects your space and pace.</p>
+            </div>
+            <div class="host-ideal">
+              <h3 class="ideal-label">Perfect for:</h3>
+              <ul class="ideal-list">
+                <li>Travelers seeking relaxation and healing</li>
+                <li>Those who appreciate calm, thoughtful guidance</li>
+                <li>People wanting to disconnect and recharge</li>
+              </ul>
             </div>
             <div class="host-experiences">
               <h3 class="experiences-label">Leads:</h3>
@@ -131,7 +221,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </article>
 
-        <article class="host-card">
+        <article class="host-card" data-interests="nature photo culture" data-energy="quiet">
           <div class="host-image">
             <div class="host-image-placeholder host-ken"></div>
           </div>
@@ -160,7 +250,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                 </span>
-                <span>Tama Forest Local</span>
+                <span>Born in Hachioji, 40+ years</span>
               </div>
               <div class="fact">
                 <span class="fact-icon">
@@ -171,6 +261,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </span>
                 <span>Leading tours since 2018</span>
               </div>
+            </div>
+            <div class="host-interests">
+              <h3 class="interests-label">Interests:</h3>
+              <div class="interest-tags">
+                <span class="tag tag-nature">Nature</span>
+                <span class="tag tag-photo">Photography</span>
+                <span class="tag tag-culture">Forest Culture</span>
+              </div>
+            </div>
+            <div class="host-energy">
+              <h3 class="energy-label">Communication Style:</h3>
+              <div class="energy-badge badge-quiet">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                  <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                  <path d="M12 8v2"/>
+                  <path d="M12 16v.01"/>
+                </svg>
+                Quiet & Observant
+              </div>
+              <p class="energy-desc">Prefers to let nature speak. Shares knowledge when asked.</p>
+            </div>
+            <div class="host-ideal">
+              <h3 class="ideal-label">Perfect for:</h3>
+              <ul class="ideal-list">
+                <li>Nature photographers seeking hidden spots</li>
+                <li>Those who enjoy peaceful, reflective walks</li>
+                <li>People interested in plants and wildlife</li>
+              </ul>
             </div>
             <div class="host-experiences">
               <h3 class="experiences-label">Leads:</h3>
@@ -230,7 +349,93 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .hosts-section {
-    padding-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+  }
+
+  .filter-section {
+    background: var(--color-gray-50);
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+  }
+
+  .filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .filter-tag {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    color: var(--color-gray-700);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-tag:hover,
+  .filter-tag.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  .host-card.hidden {
+    display: none;
+  }
+
+  .ask-guide-link {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.8125rem;
   }
 
   .hosts-grid {
@@ -338,6 +543,123 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: var(--spacing-md) 0;
     border-top: 1px solid var(--color-gray-100);
     border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .host-interests {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .interests-label,
+  .energy-label,
+  .ideal-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+  }
+
+  .tag-food {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+
+  .tag-culture {
+    background: #DBEAFE;
+    color: #1E40AF;
+  }
+
+  .tag-history {
+    background: #FCE7F3;
+    color: #9D174D;
+  }
+
+  .tag-photo {
+    background: #E0E7FF;
+    color: #3730A3;
+  }
+
+  .tag-anime {
+    background: #F3E8FF;
+    color: #6B21A8;
+  }
+
+  .tag-arch {
+    background: #D1FAE5;
+    color: #065F46;
+  }
+
+  .host-energy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .energy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+  }
+
+  .badge-talkative {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+
+  .badge-balanced {
+    background: #E0E7FF;
+    color: #3730A3;
+  }
+
+  .badge-quiet {
+    background: #D1FAE5;
+    color: #065F46;
+  }
+
+  .energy-desc {
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+    margin: 0;
+    width: 100%;
+  }
+
+  .host-ideal {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .ideal-list {
+    margin: var(--spacing-xs) 0 0;
+    padding-left: var(--spacing-lg);
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+  }
+
+  .ideal-list li {
+    margin-bottom: var(--spacing-xs);
   }
 
   .fact {
@@ -452,5 +774,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .page-title {
       font-size: 2rem;
     }
+    
+    .filter-bar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.filter-tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filterType = btn.classList.contains('energy-filter') ? 'energy' : 'interests';
+      const value = btn.dataset.filter;
+      
+      document.querySelectorAll(`.filter-tag[data-filter]`).forEach(b => {
+        if (b.classList.contains('energy-filter') === (filterType === 'energy')) {
+          b.classList.remove('active');
+        }
+      });
+      btn.classList.add('active');
+      
+      const cards = document.querySelectorAll('.host-card');
+      cards.forEach(card => {
+        const cardInterests = card.getAttribute('data-interests') || '';
+        const cardEnergy = card.getAttribute('data-energy') || '';
+        const activeInterest = document.querySelector('.filter-tag[data-filter].active')?.dataset.filter || 'all';
+        const activeEnergy = document.querySelector('.energy-filter.active')?.dataset.filter || 'all';
+        
+        const matchInterest = activeInterest === 'all' || cardInterests.includes(activeInterest);
+        const matchEnergy = activeEnergy === 'all' || cardEnergy === activeEnergy;
+        
+        if (matchInterest && matchEnergy) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

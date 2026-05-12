@@ -95,6 +95,16 @@ const host = {
         <div class="main-content">
           <HostProfile {...host} />
           
+          <div class="compatibility-badges">
+            <h3 class="compatibility-title">Who this experience is perfect for</h3>
+            <div class="perfect-for-list">
+              <span class="badge badge-nightlife">Nightlife enthusiasts</span>
+              <span class="badge badge-food">Food & drink lovers</span>
+              <span class="badge badge-culture">Those wanting local pub culture</span>
+            </div>
+            <p class="compatibility-note">Based on {host.reviewCount} reviews, 92% of guests felt this matched their expectations.</p>
+          </div>
+          
           <div class="section-block">
             <h2>Tour Highlights</h2>
             <ul class="highlights-list">
@@ -192,6 +202,14 @@ const host = {
               </svg>
               Rated {experience.rating} • {experience.reviews} reviews
             </p>
+            <a href="/ask-guide" class="ask-guide-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              Have questions? Ask the guide first
+            </a>
           </div>
         </aside>
       </div>
@@ -289,6 +307,66 @@ const host = {
   
   .section-block {
     margin-bottom: var(--spacing-2xl);
+  }
+  
+  .compatibility-badges {
+    background: linear-gradient(135deg, #FEFCE8 0%, #F0FDF4 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-2xl);
+    border: 2px solid var(--color-primary);
+  }
+  
+  .compatibility-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .perfect-for-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .badge {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+  }
+  
+  .badge-nightlife {
+    background: #F3E8FF;
+    color: #6B21A8;
+  }
+  
+  .badge-food {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+  
+  .badge-culture {
+    background: #FCE7F3;
+    color: #9D174D;
+  }
+  
+  .badge-firstvisit {
+    background: #DBEAFE;
+    color: #1E40AF;
+  }
+  
+  .badge-introvert {
+    background: #E0E7FF;
+    color: #3730A3;
+  }
+  
+  .compatibility-note {
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+    font-style: italic;
   }
   
   .section-block h2 {
@@ -437,6 +515,22 @@ const host = {
     font-size: 0.8125rem;
     color: var(--color-gray-500);
     justify-content: center;
+  }
+  
+  .ask-guide-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    font-size: 0.8125rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .ask-guide-link:hover {
+    color: var(--color-primary-dark);
   }
   
   @media (max-width: 1024px) {

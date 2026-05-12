@@ -11,9 +11,46 @@ interface Props {
   rating: number;
   reviewCount: number;
   hostHref: string;
+  // 追加: Compatibility Matching用
+  residencyYears?: string;
+  interests?: string[];
+  energyStyle?: 'talkative' | 'balanced' | 'quiet';
+  energyDesc?: string;
+  perfectFor?: string[];
 }
 
-const { name, role, location, bio, quote, yearsExperience, specialties, imageGradient, rating, reviewCount, hostHref } = Astro.props;
+const { 
+  name, role, location, bio, quote, yearsExperience, specialties, imageGradient, rating, reviewCount, hostHref,
+  residencyYears = '',
+  interests = [],
+  energyStyle = 'balanced',
+  energyDesc = '',
+  perfectFor = []
+} = Astro.props;
+
+const energyLabels = {
+  talkative: 'Warm & Talkative',
+  balanced: 'Balanced & Thoughtful',
+  quiet: 'Quiet & Observant'
+};
+
+const interestColors: Record<string, string> = {
+  'Food & Cuisine': '#FEF3C7|#92400E',
+  'Local Culture': '#DBEAFE|#1E40AF',
+  'History': '#FCE7F3|#9D174D',
+  'Nature': '#ECFCCB|#3F6212',
+  'Photography': '#E0E7FF|#3730A3',
+  'Wellness': '#D1FAE5|#065F46',
+  'Anime': '#F3E8FF|#6B21A8',
+  'Architecture': '#D1FAE5|#065F46',
+  'Forest Culture': '#ECFCCB|#3F6212'
+};
+
+function getInterestStyle(interest: string): string {
+  const colors = interestColors[interest] || '#E5E7EB|#4B5563';
+  const [bg, text] = colors.split('|');
+  return `background: ${bg}; color: ${text};`;
+}
 ---
 
 <div class="host-profile">

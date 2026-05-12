@@ -87,6 +87,17 @@ const curatedLists = [
           </div>
         </div>
       ))}
+      </div>
+    </div>
+    
+    <div class="quiz-cta">
+      <p class="quiz-cta-text">Still unsure which experience is right for you?</p>
+      <a href="/quiz" class="quiz-cta-btn">
+        Take our 3-question quiz to find your perfect match
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -226,6 +237,34 @@ const curatedLists = [
     opacity: 1;
     transform: translateX(0);
     color: var(--color-primary);
+  }
+
+  .quiz-cta {
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .quiz-cta-text {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .quiz-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .quiz-cta-btn:hover {
+    color: var(--color-primary-dark);
   }
 
   @media (max-width: 1024px) {

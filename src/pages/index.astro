@@ -14,6 +14,22 @@ import TrustSection from '../components/home/TrustSection.astro';
   <HowItWorks />
   <TrustSection />
   
+  <section class="quiz-cta-section section">
+    <div class="container">
+      <div class="quiz-cta-content">
+        <span class="quiz-tag">New</span>
+        <h2 class="quiz-title">Not Sure Where to Start?</h2>
+        <p class="quiz-subtitle">Take our 3-question quiz and find your perfect match in under 1 minute.</p>
+        <a href="/quiz" class="btn btn-secondary btn-lg">
+          Take the Quiz
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L11.586 10H4a1 1 0 100 2h7.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
   <section class="cta-section section">
     <div class="container">
       <div class="cta-content">
@@ -71,5 +87,52 @@ import TrustSection from '../components/home/TrustSection.astro';
   .cta-section :global(.btn-outline:hover) {
     background: var(--color-white);
     color: var(--color-black);
+  }
+
+  .quiz-cta-section {
+    background: var(--color-primary-light);
+    border-top: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+  }
+
+  .quiz-cta-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .quiz-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: var(--color-secondary);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .quiz-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .quiz-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .quiz-cta-content :global(.btn-secondary) {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .quiz-cta-content :global(.btn-secondary:hover) {
+    background: var(--color-primary-dark);
   }
 </style>

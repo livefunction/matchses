@@ -1,0 +1,761 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Guide Dashboard - MATCHS"
+  description="Manage your experiences, availability, and bookings as a MATCHS guide."
+>
+  <section class="dashboard-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="guide-info">
+          <div class="guide-avatar">TS</div>
+          <div class="guide-details">
+            <h1 class="guide-name">Takeshi Sato</h1>
+            <p class="guide-role">Food Expert • Takao Area</p>
+          </div>
+        </div>
+        <div class="header-stats">
+          <div class="stat-item">
+            <span class="stat-value">127</span>
+            <span class="stat-label">Reviews</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">4.9</span>
+            <span class="stat-label">Rating</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">12</span>
+            <span class="stat-label">Upcoming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-section section">
+    <div class="container">
+      <div class="dashboard-grid">
+        <aside class="dashboard-sidebar">
+          <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item active">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Calendar
+            </a>
+            <a href="/dashboard/experiences" class="nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Experiences
+            </a>
+            <a href="/dashboard/bookings" class="nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              Bookings
+            </a>
+            <a href="/dashboard/messages" class="nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+              Messages
+              <span class="badge">3</span>
+            </a>
+            <a href="/dashboard/analytics" class="nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+              Analytics
+            </a>
+            <a href="/dashboard/settings" class="nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+              </svg>
+              Settings
+            </a>
+          </nav>
+        </aside>
+
+        <main class="dashboard-main">
+          <div class="main-header">
+            <h2 class="main-title">Availability Calendar</h2>
+            <div class="header-actions">
+              <button class="btn btn-outline btn-sm" id="syncCalendar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+                Sync Google Calendar
+              </button>
+              <button class="btn btn-primary btn-sm" id="addBlock">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Add Time Block
+              </button>
+            </div>
+          </div>
+
+          <div class="calendar-container">
+            <div class="calendar-header">
+              <button class="nav-btn" id="prevMonth">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"/>
+                </svg>
+              </button>
+              <h3 class="current-month" id="currentMonth">May 2026</h3>
+              <button class="nav-btn" id="nextMonth">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid">
+              <div class="day-header">Sun</div>
+              <div class="day-header">Mon</div>
+              <div class="day-header">Tue</div>
+              <div class="day-header">Wed</div>
+              <div class="day-header">Thu</div>
+              <div class="day-header">Fri</div>
+              <div class="day-header">Sat</div>
+            </div>
+
+            <div class="legend">
+              <div class="legend-item">
+                <span class="legend-dot available"></span>
+                <span>Available</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot booked"></span>
+                <span>Booked</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot blocked"></span>
+                <span>Blocked</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="upcoming-section">
+            <h3 class="section-title">Upcoming Bookings</h3>
+            <div class="bookings-list">
+              <div class="booking-item">
+                <div class="booking-date">
+                  <span class="date-day">15</span>
+                  <span class="date-month">May</span>
+                </div>
+                <div class="booking-details">
+                  <h4 class="booking-title">Mt. Takao Food Tour</h4>
+                  <p class="booking-info">
+                    <span class="guests">2 guests</span>
+                    <span class="time">10:00 AM</span>
+                  </p>
+                </div>
+                <div class="booking-guest">
+                  <div class="guest-avatar">JD</div>
+                  <div class="guest-info">
+                    <span class="guest-name">John D.</span>
+                    <span class="guest-flag">🇺🇸</span>
+                  </div>
+                </div>
+                <div class="booking-status confirmed">Confirmed</div>
+              </div>
+
+              <div class="booking-item">
+                <div class="booking-date">
+                  <span class="date-day">18</span>
+                  <span class="date-month">May</span>
+                </div>
+                <div class="booking-details">
+                  <h4 class="booking-title">Tachikawa Izakaya Night</h4>
+                  <p class="booking-info">
+                    <span class="guests">3 guests</span>
+                    <span class="time">6:30 PM</span>
+                  </p>
+                </div>
+                <div class="booking-guest">
+                  <div class="guest-avatar">SK</div>
+                  <div class="guest-info">
+                    <span class="guest-name">Sarah K.</span>
+                    <span class="guest-flag">🇬🇧</span>
+                  </div>
+                </div>
+                <div class="booking-status pending">Pending</div>
+              </div>
+
+              <div class="booking-item">
+                <div class="booking-date">
+                  <span class="date-day">22</span>
+                  <span class="date-month">May</span>
+                </div>
+                <div class="booking-details">
+                  <h4 class="booking-title">Mt. Takao Food Tour</h4>
+                  <p class="booking-info">
+                    <span class="guests">4 guests</span>
+                    <span class="time">11:00 AM</span>
+                  </p>
+                </div>
+                <div class="booking-guest">
+                  <div class="guest-avatar">ML</div>
+                  <div class="guest-info">
+                    <span class="guest-name">Maria L.</span>
+                    <span class="guest-flag">🇪🇸</span>
+                  </div>
+                </div>
+                <div class="booking-status confirmed">Confirmed</div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dashboard-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+  }
+
+  .guide-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .guide-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .guide-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .guide-role {
+    font-size: 0.9375rem;
+    opacity: 0.9;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: var(--spacing-2xl);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    opacity: 0.8;
+  }
+
+  .dashboard-section {
+    padding-top: var(--spacing-xl);
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .dashboard-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-xl));
+    height: fit-content;
+  }
+
+  .sidebar-nav {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-item:hover {
+    background: var(--color-gray-50);
+  }
+
+  .nav-item.active {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+  }
+
+  .nav-item svg {
+    flex-shrink: 0;
+  }
+
+  .nav-item .badge {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .dashboard-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .main-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  .header-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--color-gray-300);
+    background: transparent;
+    color: var(--color-gray-700);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-gray-50);
+  }
+
+  .btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.8125rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .calendar-container {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gray-100);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: var(--color-gray-200);
+  }
+
+  .current-month {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .day-header {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    padding: var(--spacing-sm);
+  }
+
+  .calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+  }
+
+  .calendar-day:hover {
+    background: var(--color-gray-100);
+  }
+
+  .calendar-day.empty {
+    background: transparent;
+    cursor: default;
+  }
+
+  .calendar-day.today {
+    background: var(--color-primary-light);
+    font-weight: 600;
+  }
+
+  .calendar-day.available {
+    background: #DCFCE7;
+  }
+
+  .calendar-day.booked {
+    background: #FEF3C7;
+  }
+
+  .calendar-day.blocked {
+    background: #FEE2E2;
+  }
+
+  .day-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .day-dot.available {
+    background: #22C55E;
+  }
+
+  .day-dot.booked {
+    background: #F59E0B;
+  }
+
+  .day-dot.blocked {
+    background: #EF4444;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-gray-100);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .legend-dot.available {
+    background: #DCFCE7;
+  }
+
+  .legend-dot.booked {
+    background: #FEF3C7;
+  }
+
+  .legend-dot.blocked {
+    background: #FEE2E2;
+  }
+
+  .upcoming-section {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .booking-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+  }
+
+  .booking-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 48px;
+  }
+
+  .date-day {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  .date-month {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+  }
+
+  .booking-details {
+    flex: 1;
+  }
+
+  .booking-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .booking-info {
+    font-size: 0.8125rem;
+    color: var(--color-gray-600);
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .booking-guest {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .guest-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+  }
+
+  .guest-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .guest-name {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+
+  .guest-flag {
+    font-size: 0.875rem;
+  }
+
+  .booking-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+  }
+
+  .booking-status.confirmed {
+    background: #DCFCE7;
+    color: #166534;
+  }
+
+  .booking-status.pending {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+
+  @media (max-width: 1024px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-sidebar {
+      position: static;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .header-stats {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .booking-item {
+      flex-wrap: wrap;
+    }
+
+    .booking-guest {
+      margin-left: auto;
+    }
+  }
+</style>
+
+<script>
+  const calendarGrid = document.getElementById('calendarGrid');
+  const currentMonthEl = document.getElementById('currentMonth');
+  const prevBtn = document.getElementById('prevMonth');
+  const nextBtn = document.getElementById('nextMonth');
+
+  let currentDate = new Date(2026, 4, 1);
+
+  const bookedDates = [15, 18, 22, 25];
+  const availableDates = [10, 11, 12, 13, 14, 16, 17, 19, 20, 21, 23, 24, 26, 27, 28, 29, 30];
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    currentMonthEl.textContent = `${monthNames[month]} ${year}`;
+    
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date(2026, 4, 11);
+    
+    let html = '';
+    
+    for (let i = 0; i < firstDay; i++) {
+      html += '<div class="calendar-day empty"></div>';
+    }
+    
+    for (let day = 1; day <= daysInMonth; day++) {
+      let classes = 'calendar-day';
+      let dotHtml = '';
+      
+      if (day === today.getDate() && month === today.getMonth()) {
+        classes += ' today';
+      }
+      
+      if (bookedDates.includes(day)) {
+        classes += ' booked';
+        dotHtml = '<span class="day-dot booked"></span>';
+      } else if (availableDates.includes(day)) {
+        classes += ' available';
+        dotHtml = '<span class="day-dot available"></span>';
+      } else if (day < today.getDate()) {
+        classes += ' blocked';
+        dotHtml = '<span class="day-dot blocked"></span>';
+      }
+      
+      html += `<div class="${classes}"><span>${day}</span>${dotHtml}</div>`;
+    }
+    
+    calendarGrid.innerHTML = '<div class="day-header">Sun</div><div class="day-header">Mon</div><div class="day-header">Tue</div><div class="day-header">Wed</div><div class="day-header">Thu</div><div class="day-header">Fri</div><div class="day-header">Sat</div>' + html;
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+
+  renderCalendar();
+</script>

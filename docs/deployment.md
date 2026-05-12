@@ -69,13 +69,23 @@ npm run test:ui
 ```bash
 # Ubuntu/Debian 系の場合
 sudo apt-get update
-sudo apt-get install -y libnss3 libatk-bridge2.0-0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpangocairo-1.0-0 libgtk-3-0
+sudo apt-get install -y libnss3 libnspr4 libatk-bridge2.0-0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpangocairo-1.0-0 libgtk-3-0
 
 # インストール後にブラウザを再インストール
 npx playwright install chromium
 ```
 
 WSL 上で `npm test` を実行する前に必ず `npx playwright install --with-deps chromium` を実行してください。
+
+**典型的なエラー例**
+
+以下のような共有ライブラリエラーが出た場合は、上記の `apt-get install` が必要です。
+
+```
+error while loading shared libraries: libnspr4.so: cannot open shared object file
+error while loading shared libraries: libnss3.so: cannot open shared object file
+error while loading shared libraries: libasound.so.2: cannot open shared object file
+```
 
 ### 4. 本番ビルド
 

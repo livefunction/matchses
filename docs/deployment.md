@@ -47,9 +47,13 @@ npm run dev
 
 ### 3. テスト実行
 
+#### WSL 環境での Playwright セットアップ
+
+WSL（Windows Subsystem for Linux）で Playwright を初回実行する場合は、システム依存ライブラリのインストールが必要です。
+
 ```bash
-# Playwrightインストール（初回）
-npx playwright install chromium
+# Playwright ブラウザとシステム依存ライブラリをインストール（初回必須）
+npx playwright install --with-deps chromium
 
 # テスト実行
 npm test
@@ -57,6 +61,21 @@ npm test
 # UIモードでテスト（ブラウザ表示）
 npm run test:ui
 ```
+
+**システム依存ライブラリが不足する場合の対処法**
+
+`--with-deps` で自動インストールされない場合や、WSL 上でブラウザが起動しない場合は以下を試行してください。
+
+```bash
+# Ubuntu/Debian 系の場合
+sudo apt-get update
+sudo apt-get install -y libnss3 libatk-bridge2.0-0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2 libpangocairo-1.0-0 libgtk-3-0
+
+# インストール後にブラウザを再インストール
+npx playwright install chromium
+```
+
+WSL 上で `npm test` を実行する前に必ず `npx playwright install --with-deps chromium` を実行してください。
 
 ### 4. 本番ビルド
 

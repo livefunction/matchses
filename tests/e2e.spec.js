@@ -242,18 +242,121 @@ test.describe('MATCHS - Dashboard', () => {
 test.describe('MATCHS - Trust Section', () => {
   test('trust section is visible on homepage', async ({ page }) => {
     await page.goto('/');
-    
+
     const trustSection = page.locator('.trust-section');
     await expect(trustSection).toBeVisible();
   });
 
   test('trust items are displayed', async ({ page }) => {
     await page.goto('/');
-    
+
     const localExperts = page.locator('text=Local Experts');
     await expect(localExperts).toBeVisible();
-    
+
     const freeCancellation = page.locator('text=Free Cancellation');
     await expect(freeCancellation).toBeVisible();
+  });
+});
+
+test.describe('MATCHS - Contact Page', () => {
+  test('contact page loads', async ({ page }) => {
+    await page.goto('/contact');
+    await expect(page).toHaveTitle(/Contact/);
+
+    const contactSection = page.locator('.contact-section');
+    await expect(contactSection).toBeVisible();
+
+    const contactForm = page.locator('.contact-form');
+    await expect(contactForm).toBeVisible();
+  });
+
+  test('contact info cards are displayed', async ({ page }) => {
+    await page.goto('/contact');
+
+    const emailCard = page.locator('text=hello@matchses.com');
+    await expect(emailCard).toBeVisible();
+
+    const locationCard = page.locator('text=Tokyo, Tama Region');
+    await expect(locationCard).toBeVisible();
+  });
+});
+
+test.describe('MATCHS - Terms Page', () => {
+  test('terms page loads', async ({ page }) => {
+    await page.goto('/terms');
+    await expect(page).toHaveTitle(/Terms/);
+
+    const contentSection = page.locator('.content-section');
+    await expect(contentSection).toBeVisible();
+  });
+
+  test('terms content blocks are displayed', async ({ page }) => {
+    await page.goto('/terms');
+
+    const acceptanceBlock = page.locator('text=Acceptance of Terms');
+    await expect(acceptanceBlock).toBeVisible();
+
+    const privacyBlock = page.locator('text=Privacy');
+    await expect(privacyBlock).toBeVisible();
+  });
+});
+
+test.describe('MATCHS - For Business Page', () => {
+  test('for-business page loads', async ({ page }) => {
+    await page.goto('/for-business');
+    await expect(page).toHaveTitle(/Partner/);
+
+    const benefitsSection = page.locator('.benefits-section');
+    await expect(benefitsSection).toBeVisible();
+  });
+
+  test('benefit cards are displayed', async ({ page }) => {
+    await page.goto('/for-business');
+
+    const benefitsGrid = page.locator('.benefits-grid');
+    await expect(benefitsGrid).toBeVisible();
+
+    const firstBenefit = page.locator('.benefit-card').first();
+    await expect(firstBenefit).toBeVisible();
+  });
+
+  test('CTA section has apply link', async ({ page }) => {
+    await page.goto('/for-business');
+
+    const applyButton = page.locator('text=Apply Now');
+    await expect(applyButton).toBeVisible();
+    await expect(applyButton).toHaveAttribute('href', '/contact');
+  });
+});
+
+test.describe('MATCHS - Navigation Flow', () => {
+  test('main navigation links work from homepage', async ({ page }) => {
+    await page.goto('/');
+
+    await page.click('text=Experiences');
+    await expect(page).toHaveURL(/\/experiences/);
+
+    await page.goto('/');
+    await page.click('text=Take the Quiz');
+    await expect(page).toHaveURL(/\/quiz/);
+
+    await page.goto('/experiences/mt-takao-food-tour');
+    await page.click('text=Have questions?');
+    await expect(page).toHaveURL(/\/ask-guide/);
+
+    await page.goto('/');
+    await page.click('text=Login');
+    await expect(page).toHaveURL(/\/login/);
+  });
+
+  test('footer or secondary navigation to contact and terms', async ({ page }) => {
+    await page.goto('/');
+
+    await page.click('text=Contact');
+    await expect(page).toHaveURL(/\/contact/);
+
+    await page.goto('/');
+    await page.click('text=For Business');
+    await expect(page).toHaveURL(/\/for-business/);
   });
 });

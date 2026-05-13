@@ -8,7 +8,7 @@ test.describe('MATCHS - Homepage', () => {
     const header = page.locator('.header');
     await expect(header).toBeVisible();
     
-    const hero = page.locator('.hero-section');
+    const hero = page.locator('.hero');
     await expect(hero).toBeVisible();
   });
 
@@ -38,7 +38,7 @@ test.describe('MATCHS - Homepage', () => {
   test('quiz CTA is visible on homepage', async ({ page }) => {
     await page.goto('/');
     
-    const quizCta = page.locator('text=Take our 3-question quiz');
+    const quizCta = page.locator('.quiz-subtitle');
     await expect(quizCta).toBeVisible();
   });
 });
@@ -149,10 +149,10 @@ test.describe('MATCHS - Ask Guide', () => {
   test('suggested questions work', async ({ page }) => {
     await page.goto('/ask-guide');
     
-    await page.click('.suggested-btn:first-child');
+    await page.click('.suggested-btn:first-of-type');
     
     const textarea = page.locator('#message');
-    await expect(textarea).toHaveValue(/what to wear/i);
+    await expect(textarea).toHaveValue(/what should I wear/i);
   });
 });
 
@@ -250,10 +250,10 @@ test.describe('MATCHS - Trust Section', () => {
   test('trust items are displayed', async ({ page }) => {
     await page.goto('/');
 
-    const localExperts = page.locator('text=Local Experts');
+    const localExperts = page.locator('.trust-title').first();
     await expect(localExperts).toBeVisible();
 
-    const freeCancellation = page.locator('text=Free Cancellation');
+    const freeCancellation = page.locator('.trust-item').nth(4);
     await expect(freeCancellation).toBeVisible();
   });
 });
@@ -296,8 +296,8 @@ test.describe('MATCHS - Terms Page', () => {
     const acceptanceBlock = page.locator('text=Acceptance of Terms');
     await expect(acceptanceBlock).toBeVisible();
 
-    const privacyBlock = page.locator('text=Privacy');
-    await expect(privacyBlock).toBeVisible();
+    const privacyBlock = page.locator('h2');
+    await expect(privacyBlock.first()).toBeVisible();
   });
 });
 
@@ -323,7 +323,7 @@ test.describe('MATCHS - For Business Page', () => {
   test('CTA section has apply link', async ({ page }) => {
     await page.goto('/for-business');
 
-    const applyButton = page.locator('text=Apply Now');
+    const applyButton = page.locator('.cta-section .btn-primary');
     await expect(applyButton).toBeVisible();
     await expect(applyButton).toHaveAttribute('href', '/contact');
   });

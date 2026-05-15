@@ -42,8 +42,6 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test --reporter=list
-        env:
-          PLAYWRIGHT_BASE_URL: ${{ vars.PUBLIC_URL }}
 
   build:
     name: Build

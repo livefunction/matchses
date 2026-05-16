@@ -1,62 +1,54 @@
 ---
-import ExperienceCard from '../common/ExperienceCard.astro';
-
-const experiences = [
-  {
-    title: 'Mt. Takao Food Tour',
-    description: 'Explore the ancient trails of Mt. Takao with a local guide. Taste traditional soba, tea, and local snacks along the way.',
-    price: 89,
-    duration: '4 hours',
-    rating: 4.9,
-    reviews: 127,
-    image: 'linear-gradient(135deg, #84CC16 0%, #65A30D 100%)',
-    href: '/experiences/mt-takao-food-tour',
-    highlights: ['Local Guide', 'Food Included', 'Mountain Trail']
-  },
-  {
-    title: 'Tachikawa Izakaya Night',
-    description: 'Experience authentic Japanese pub culture in Tachikawa. Visit 3 local izakaya and sample seasonal dishes and drinks.',
-    price: 75,
-    duration: '3 hours',
-    rating: 4.8,
-    reviews: 89,
-    image: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
-    href: '/experiences/tachikawa-izakaya-night',
-    highlights: ['3 Izakaya', 'Drinks Included', 'English Guide']
-  },
-  {
-    title: 'Onsen Day Trip',
-    description: 'Relax at a traditional Japanese hot spring near Mt. Takao. Enjoy outdoor baths, sauna, and optional massage.',
-    price: 65,
-    duration: '5 hours',
-    rating: 4.9,
-    reviews: 203,
-    image: 'linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)',
-    href: '/experiences/onsen-day-trip',
-    highlights: ['Hot Springs', 'Lunch Included', 'Transport']
-  }
-];
 ---
 
 <section class="featured-section section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Featured Experiences</span>
-      <h2 class="section-title">Discover Our Most Popular Tours</h2>
+      <span class="section-tag">How MATCHS Works</span>
+      <h2 class="section-title">Your Perfect Guide in 3 Simple Steps</h2>
       <p class="section-subtitle">
-        Hand-picked experiences led by local experts. Book instantly with no reservation fees.
+        Our intelligent matching system connects you with the ideal local host for your travel style.
       </p>
     </div>
     
-    <div class="experiences-grid">
-      {experiences.map(exp => (
-        <ExperienceCard {...exp} />
-      ))}
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Take the Quiz</h3>
+        <p class="step-desc">Answer 3 quick questions about your travel preferences and interests.</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Get Matched</h3>
+        <p class="step-desc">Our system finds verified hosts who match your style and interests.</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Book & Enjoy</h3>
+        <p class="step-desc">Connect directly with your host and enjoy an authentic local experience.</p>
+      </div>
     </div>
     
     <div class="section-cta">
-      <a href="/experiences" class="btn btn-secondary">
-        View All Experiences
+      <a href="/quiz" class="btn btn-primary btn-lg">
+        Start Matching Now
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -98,11 +90,49 @@ const experiences = [
     color: var(--color-gray-700);
   }
   
-  .experiences-grid {
+  .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-2xl);
+  }
+  
+  .step-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s;
+  }
+  
+  .step-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border-radius: 50%;
+  }
+  
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .step-desc {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
   }
   
   .section-cta {
@@ -110,13 +140,13 @@ const experiences = [
   }
   
   @media (max-width: 1024px) {
-    .experiences-grid {
+    .steps-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
   @media (max-width: 640px) {
-    .experiences-grid {
+    .steps-grid {
       grid-template-columns: 1fr;
     }
     

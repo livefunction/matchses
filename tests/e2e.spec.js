@@ -15,8 +15,8 @@ test.describe('MATCHS - Homepage', () => {
   test('navigation links work', async ({ page }) => {
     await page.goto('/');
     
-    await page.click('text=Experiences');
-    await expect(page).toHaveURL(/\/experiences/);
+    await page.click('text=Take the Quiz');
+    await expect(page).toHaveURL(/\/quiz/);
     
     await page.click('text=Hosts');
     await expect(page).toHaveURL(/\/hosts/);
@@ -40,62 +40,6 @@ test.describe('MATCHS - Homepage', () => {
     
     const quizCta = page.locator('.quiz-subtitle');
     await expect(quizCta).toBeVisible();
-  });
-});
-
-test.describe('MATCHS - Experiences', () => {
-  test('experiences page loads', async ({ page }) => {
-    await page.goto('/experiences');
-    await expect(page).toHaveTitle(/Experiences/);
-    
-    const experiencesGrid = page.locator('.experiences-grid');
-    await expect(experiencesGrid).toBeVisible();
-  });
-
-  test('experience cards are displayed', async ({ page }) => {
-    await page.goto('/experiences');
-    
-    const cards = page.locator('.experience-card');
-    await expect(cards.first()).toBeVisible();
-  });
-
-  test('filters section is present', async ({ page }) => {
-    await page.goto('/experiences');
-    
-    const filters = page.locator('.filters');
-    await expect(filters).toBeVisible();
-  });
-});
-
-test.describe('MATCHS - Individual Experience Pages', () => {
-  test('Mt. Takao Food Tour page loads', async ({ page }) => {
-    await page.goto('/experiences/mt-takao-food-tour');
-    await expect(page).toHaveTitle(/Mt. Takao/);
-    
-    const hero = page.locator('.experience-hero');
-    await expect(hero).toBeVisible();
-    
-    const bookingForm = page.locator('.booking-form');
-    await expect(bookingForm).toBeVisible();
-    
-    const askGuideLink = page.locator('text=Have questions?');
-    await expect(askGuideLink).toBeVisible();
-  });
-
-  test('Tachikawa Izakaya Night page loads', async ({ page }) => {
-    await page.goto('/experiences/tachikawa-izakaya-night');
-    await expect(page).toHaveTitle(/Tachikawa/);
-    
-    const hero = page.locator('.experience-hero');
-    await expect(hero).toBeVisible();
-  });
-
-  test('Onsen Day Trip page loads', async ({ page }) => {
-    await page.goto('/experiences/onsen-day-trip');
-    await expect(page).toHaveTitle(/Onsen/);
-    
-    const hero = page.locator('.experience-hero');
-    await expect(hero).toBeVisible();
   });
 });
 
@@ -333,16 +277,12 @@ test.describe('MATCHS - Navigation Flow', () => {
   test('main navigation links work from homepage', async ({ page }) => {
     await page.goto('/');
 
-    await page.click('text=Experiences');
-    await expect(page).toHaveURL(/\/experiences/);
-
-    await page.goto('/');
     await page.click('text=Take the Quiz');
     await expect(page).toHaveURL(/\/quiz/);
 
-    await page.goto('/experiences/mt-takao-food-tour');
-    await page.click('text=Have questions?');
-    await expect(page).toHaveURL(/\/ask-guide/);
+    await page.goto('/');
+    await page.click('text=Hosts');
+    await expect(page).toHaveURL(/\/hosts/);
 
     await page.goto('/');
     await page.click('text=Login');

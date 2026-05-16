@@ -1,6 +1,6 @@
 ---
 const navItems = [
-  { label: 'Experiences', href: '/experiences' },
+  { label: 'Take the Quiz', href: '/quiz' },
   { label: 'Hosts', href: '/hosts' },
   { label: 'For Business', href: '/for-business' },
   { label: 'Contact', href: '/contact' },
@@ -25,8 +25,8 @@ const user = {
     </nav>
     
     <div class="header-actions">
-      <a href="/experiences" class="btn btn-primary">
-        Book Now
+      <a href="/quiz" class="btn btn-primary">
+        Find Your Match
       </a>
       <div class="auth-buttons">
         <a href="/login" class="btn btn-outline btn-sm">Login</a>
@@ -92,7 +92,7 @@ const user = {
       {navItems.map(item => (
         <a href={item.href} class="nav-link-mobile">{item.label}</a>
       ))}
-      <a href="/experiences" class="btn btn-primary mobile-cta">Book Now</a>
+      <a href="/quiz" class="btn btn-primary mobile-cta">Find Your Match</a>
       <a href="/login" class="nav-link-mobile">Login</a>
       <a href="/register" class="nav-link-mobile">Sign Up</a>
     </nav>

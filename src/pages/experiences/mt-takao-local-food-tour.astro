@@ -1,0 +1,562 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Mt. Takao Local Food Tour - MATCHS"
+  description="Explore the sacred Mt. Takao with a local food guide. Soba, mountain yam, seasonal snacks. 3 hours, ¥4,980/person. Book now."
+  pageType="product"
+>
+  <!-- Hero -->
+  <section class="exp-hero">
+    <div class="exp-hero-overlay"></div>
+    <div class="container exp-hero-content">
+      <span class="exp-category">Food & Nature</span>
+      <h1 class="exp-title">Mt. Takao Local Food Tour</h1>
+      <div class="exp-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-score">4.8</span>
+        <span class="rating-count">(32 Reviews)</span>
+      </div>
+      <div class="exp-info-bar">
+        <span class="info-item">⏱ 3 Hours</span>
+        <span class="info-item">🌐 English OK</span>
+        <span class="info-item">📍 Tokyo Tama</span>
+      </div>
+      <div class="exp-price">¥4,980 <span>/ person</span></div>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section class="booking-section section" id="book">
+    <div class="container">
+      <div class="booking-grid">
+        <!-- Left: Details -->
+        <div class="exp-details">
+          <h2 class="detail-title">Overview</h2>
+          <p class="detail-text">
+            Explore the sacred mountain with a local guide. Taste traditional soba, 
+            mountain yam, and seasonal snacks. Perfect for first-time visitors to 
+            Tokyo's nature side. Your guide knows every hidden trail and the best 
+            local restaurants that tourists never find.
+          </p>
+
+          <h3 class="detail-subtitle">What's Included</h3>
+          <ul class="included-list">
+            <li>English-speaking local guide</li>
+            <li>3 food tastings (soba, mountain yam, seasonal)</li>
+            <li>Round-trip cable car ticket</li>
+            <li>Seasonal snacks</li>
+            <li>Bottled water</li>
+          </ul>
+
+          <h3 class="detail-subtitle">Schedule</h3>
+          <div class="schedule-timeline">
+            <div class="timeline-item">
+              <span class="timeline-time">09:00</span>
+              <span class="timeline-desc">Meet at Takaosanguchi Station</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">09:30</span>
+              <span class="timeline-desc">Cable car to the middle station</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">10:00</span>
+              <span class="timeline-desc">Forest walk & temple visit</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">12:00</span>
+              <span class="timeline-desc">Lunch at local soba restaurant</span>
+            </div>
+          </div>
+
+          <h3 class="detail-subtitle">Cancellation Policy</h3>
+          <p class="detail-text cancellation-text">
+            🛡 Free cancellation up to 24 hours before the experience starts.
+          </p>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <span class="badge-icon">⚡</span>
+              <span class="badge-text">Instant Confirmation</span>
+            </div>
+            <div class="trust-badge">
+              <span class="badge-icon">🔒</span>
+              <span class="badge-text">Secure Payment by Stripe</span>
+            </div>
+            <div class="trust-badge">
+              <span class="badge-icon">🌐</span>
+              <span class="badge-text">English Support</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Booking Card -->
+        <div class="booking-card" id="bookingCard">
+          <div class="booking-card-header">
+            <span class="booking-price">¥4,980</span>
+            <span class="booking-per">/ person</span>
+          </div>
+
+          <form id="bookingForm" class="booking-form">
+            <div class="form-group">
+              <label for="bookingDate">Select Date</label>
+              <input type="date" id="bookingDate" name="booking_date" required 
+                     min="2026-05-18" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="guestCount">Guests</label>
+              <div class="guest-counter">
+                <button type="button" id="guestMinus" class="counter-btn" aria-label="Decrease">−</button>
+                <span id="guestDisplay" class="counter-value">1</span>
+                <button type="button" id="guestPlus" class="counter-btn" aria-label="Increase">+</button>
+                <input type="hidden" id="guestCount" name="guest_count" value="1" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guestName">Your Name</label>
+              <input type="text" id="guestName" name="guest_name" required 
+                     placeholder="John Doe" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="guestEmail">Email</label>
+              <input type="email" id="guestEmail" name="guest_email" required 
+                     placeholder="john@example.com" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="guestWhatsapp">WhatsApp <span class="optional">(optional)</span></label>
+              <input type="tel" id="guestWhatsapp" name="guest_whatsapp" 
+                     placeholder="+81 90-1234-5678" class="form-input" />
+            </div>
+
+            <div class="booking-total">
+              <span class="total-label">Total</span>
+              <span class="total-amount" id="totalAmount">¥4,980</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="bookBtn">
+              Book Now — ¥4,980
+            </button>
+
+            <p class="booking-note">No account required. You'll pay securely via Stripe.</p>
+          </form>
+
+          <div id="bookingError" class="booking-error hidden"></div>
+          <div id="bookingLoading" class="booking-loading hidden">
+            <div class="spinner"></div>
+            <p>Redirecting to secure payment...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fixed Bottom CTA -->
+  <div class="fixed-cta" id="fixedCta">
+    <div class="container fixed-cta-inner">
+      <div class="fixed-cta-info">
+        <span class="fixed-cta-price">¥4,980</span>
+        <span class="fixed-cta-per">/ person</span>
+      </div>
+      <a href="#book" class="btn btn-primary btn-lg">Book Now</a>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <section class="reviews-section section">
+    <div class="container">
+      <h2 class="reviews-title">What Travelers Say</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Amazing experience! The guide was super friendly and knew every hidden spot. The soba was the best I've ever had."</p>
+          <span class="review-author">— Sarah, USA</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Hiroshi-san made this tour unforgettable. I felt like I was exploring with an old friend. Highly recommend!"</p>
+          <span class="review-author">— James, UK</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">"Beautiful mountain, great food. The cable car ride alone was worth it. Perfect half-day trip from Tokyo."</p>
+          <span class="review-author">— Maria, Spain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Guest counter
+  const guestMinus = document.getElementById('guestMinus');
+  const guestPlus = document.getElementById('guestPlus');
+  const guestDisplay = document.getElementById('guestDisplay');
+  const guestCount = document.getElementById('guestCount');
+  const totalAmount = document.getElementById('totalAmount');
+  const bookBtn = document.getElementById('bookBtn');
+  const pricePerPerson = 4980;
+
+  function updateGuest(delta: number) {
+    let count = parseInt(guestCount!.value) + delta;
+    count = Math.max(1, Math.min(8, count));
+    guestCount!.value = String(count);
+    guestDisplay!.textContent = String(count);
+    const total = pricePerPerson * count;
+    totalAmount!.textContent = `¥${total.toLocaleString()}`;
+    bookBtn!.textContent = `Book Now — ¥${total.toLocaleString()}`;
+  }
+
+  guestMinus?.addEventListener('click', (e) => { e.preventDefault(); updateGuest(-1); });
+  guestPlus?.addEventListener('click', (e) => { e.preventDefault(); updateGuest(1); });
+
+  // Booking form submission
+  const form = document.getElementById('bookingForm');
+  const errorDiv = document.getElementById('bookingError');
+  const loadingDiv = document.getElementById('bookingLoading');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorDiv!.classList.add('hidden');
+    loadingDiv!.classList.remove('hidden');
+    bookBtn!.disabled = true;
+
+    const bookingData = {
+      experience_id: 1,
+      guest_name: (document.getElementById('guestName') as HTMLInputElement).value,
+      guest_email: (document.getElementById('guestEmail') as HTMLInputElement).value,
+      guest_count: parseInt((document.getElementById('guestCount') as HTMLInputElement).value),
+      booking_date: (document.getElementById('bookingDate') as HTMLInputElement).value,
+      guest_whatsapp: (document.getElementById('guestWhatsapp') as HTMLInputElement).value,
+    };
+
+    try {
+      const response = await fetch('/api/checkout.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData),
+      });
+
+      const result = await response.json();
+
+      if (result.url) {
+        window.location.href = result.url;
+      } else {
+        throw new Error(result.error || 'Booking failed');
+      }
+    } catch (err: any) {
+      errorDiv!.textContent = err.message || 'Something went wrong. Please try again.';
+      errorDiv!.classList.remove('hidden');
+      loadingDiv!.classList.add('hidden');
+      bookBtn!.disabled = false;
+    }
+  });
+
+  // Fixed CTA show/hide
+  const fixedCta = document.getElementById('fixedCta');
+  const bookingCard = document.getElementById('bookingCard');
+  let observer: IntersectionObserver;
+
+  if (fixedCta && bookingCard) {
+    observer = new IntersectionObserver((entries) => {
+      fixedCta.style.transform = entries[0].isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+    }, { threshold: 0.1 });
+    observer.observe(bookingCard);
+  }
+</script>
+
+<style>
+  .exp-hero {
+    position: relative;
+    background: linear-gradient(135deg, #065F46 0%, #059669 50%, #34D399 100%);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+  }
+
+  .exp-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .exp-category {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .exp-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    max-width: 600px;
+  }
+
+  .exp-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  .stars { color: #F59E0B; font-size: 1.125rem; }
+  .rating-score { font-weight: 700; font-size: 1.125rem; }
+  .rating-count { opacity: 0.8; }
+
+  .exp-info-bar {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+  }
+  .info-item { font-size: 1rem; opacity: 0.9; }
+
+  .exp-price {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .exp-price span { font-size: 1rem; font-weight: 400; opacity: 0.8; }
+
+  .booking-section { background: var(--color-gray-50); }
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .exp-details { }
+
+  .detail-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+  }
+  .detail-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  .detail-text { color: var(--color-gray-700); line-height: 1.7; margin-bottom: var(--spacing-lg); }
+  .cancellation-text { color: var(--color-primary-dark); font-weight: 500; }
+
+  .included-list {
+    list-style: none;
+    padding: 0;
+  }
+  .included-list li {
+    padding: var(--spacing-sm) 0;
+    color: var(--color-gray-700);
+  }
+  .included-list li::before {
+    content: '✓ ';
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .schedule-timeline { border-left: 2px solid var(--color-primary); padding-left: var(--spacing-lg); }
+  .timeline-item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    position: absolute;
+    left: calc(-1 * var(--spacing-lg) - 6px);
+    top: 10px;
+  }
+  .timeline-time { font-weight: 700; color: var(--color-primary); min-width: 55px; }
+  .timeline-desc { color: var(--color-gray-700); }
+
+  .trust-badges {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    background: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+  .badge-icon { font-size: 1rem; }
+
+  /* Booking Card */
+  .booking-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-lg));
+  }
+  .booking-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+  .booking-price { font-size: 1.75rem; font-weight: 700; }
+  .booking-per { color: var(--color-gray-500); }
+
+  .booking-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .form-group { }
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+    margin-bottom: 4px;
+  }
+  .optional { font-weight: 400; color: var(--color-gray-500); }
+  .form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { outline: none; border-color: var(--color-primary); }
+
+  .guest-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  .counter-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .counter-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .counter-value { font-size: 1.25rem; font-weight: 600; min-width: 30px; text-align: center; }
+
+  .booking-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-gray-200);
+    font-size: 1.125rem;
+  }
+  .total-label { font-weight: 600; }
+  .total-amount { font-weight: 700; font-size: 1.5rem; color: var(--color-primary); }
+
+  .btn-block { width: 100%; padding: 14px; font-size: 1.125rem; }
+  .booking-note { text-align: center; font-size: 0.8125rem; color: var(--color-gray-500); }
+
+  .booking-error {
+    background: #FEF2F2;
+    color: #DC2626;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-md);
+    font-size: 0.875rem;
+  }
+  .booking-loading {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-gray-700);
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-gray-200);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto var(--spacing-md);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Fixed CTA */
+  .fixed-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-top: 1px solid var(--color-gray-200);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+    padding: var(--spacing-md) 0;
+    z-index: 50;
+    transition: transform 0.3s ease;
+  }
+  .fixed-cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fixed-cta-info { display: flex; align-items: baseline; gap: 4px; }
+  .fixed-cta-price { font-size: 1.375rem; font-weight: 700; }
+  .fixed-cta-per { color: var(--color-gray-500); font-size: 0.875rem; }
+
+  /* Reviews */
+  .reviews-section { background: var(--color-white); }
+  .reviews-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+  }
+  .review-card {
+    background: var(--color-gray-50);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+  }
+  .review-stars { color: #F59E0B; margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
+  .review-text { color: var(--color-gray-700); margin-bottom: var(--spacing-md); line-height: 1.6; font-style: italic; }
+  .review-author { font-weight: 600; color: var(--color-gray-500); }
+
+  @media (max-width: 900px) {
+    .booking-grid { grid-template-columns: 1fr; }
+    .booking-card { position: static; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .exp-title { font-size: 1.75rem; }
+    .fixed-cta { padding: var(--spacing-sm) 0; }
+  }
+
+  .hidden { display: none !important; }
+</style>

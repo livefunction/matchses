@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# PHP API secrets (config.example.php is the template)
+api/config.php
+api/vendor/
+
 # test results
 test-results/
 playwright-report/

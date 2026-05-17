@@ -97,7 +97,7 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; mirror -R --verbose dist/ /home/happyhabitlife/public_html/matchses/ ; bye" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+          lftp -e "set ftp:ssl-allow no; set ftp:passive-mode true; mirror -R --verbose dist/ /home/happyhabitlife/public_html/ ; bye" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
 
   healthcheck:
     name: Health Check
